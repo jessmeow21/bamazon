@@ -12,8 +12,15 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if (err) throw err;
+    inquirer.prompt([{
+        type: "list",
+        message: "What is the ID of the product you'd like to buy?",
+        message: "How many units of this product would you like to buy?"
+    }])
     console.log("connected as id " + connection.threadId);
     connection.query
+    
+    console.log('Insufficient quantity!')
 
 
 })
