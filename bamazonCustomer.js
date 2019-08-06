@@ -10,21 +10,33 @@ var connection = mysql.createConnection({
     database: "bamazon"
 });
 
+//connects to database
 connection.connect(function(err){
     if (err) throw err;
-    start();
+    // console.log("connected as id " + connection.threadId);
+    // start();
     
+    //list the items to user
+    connection.query('SELECT * FROM products', function(err, res){
+    //error check
+    if (err) throw err;
+    console.log(res);
+    });
 });
 
-function start()
-    inquirer.prompt([{
-        type: "list",
-        message: "What is the ID of the product you'd like to buy?",
-        message: "How many units of this product would you like to buy?"
-    }])
-    console.log("connected as id " + connection.threadId);
-    connection.query
 
-    console.log('Insufficient quantity!')
+
+
+// function start(){
+//     inquirer.prompt([{
+//         type: "list",
+//         message: "What is the [ID] of the product you'd like to buy?",
+//     }])
+   
+   
+ 
+
+
+   
 
 
