@@ -19,5 +19,5 @@ If the store has enough of the product it will fulfill the customer's order. Whi
 ## NPM Packages:
 * MySQL
 * Inquirer 
-* CLI Table for rendering tables on the command line from node.js scripts.
+* CLI Table2 (updated version) for rendering tables on the command line from node.js scripts.
 
