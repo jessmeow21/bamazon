@@ -50,6 +50,30 @@ var showItems = function(){
         }
         //console log table to see it
             console.log(table.toString());
+            shop();
+    });
+};
+
+//using inquirer to prompt the user with questions
+var shop = function(){
+    inquirer.prompt({
+        name: "productToBuy",
+        type: "input",
+        message: "Enter the ID of the product you'd like to buy: "
+    })
+    .then(function(answer1){
+    var selection = answer1.productToBuy;
+    connection.query("SELECT * FROM products WHERE item_id", function(err, res){
+        if (err) throw err;
+        //if user enters an id that does not exist
+        if(res.length === 0){
+            console.log("That product is not in inventory. Please enter a product Id from the list above.");
+        //call it
+        shop();
+        } else {
+        console.log('It works');
+        }
+    });
     });
 };
 showItems();
@@ -62,8 +86,7 @@ showItems();
 //         message: "Enter the [ID] of the product you'd like to buy",
 //     }])
    
-   
- 
+
 
 
    
