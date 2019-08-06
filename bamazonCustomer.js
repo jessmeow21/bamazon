@@ -1,5 +1,7 @@
 //using npm package mysql
 var mysql = require("mysql");
+var inquirer = require("inquirer");
+var Table = require("cli-table");
 
 //creating connection
 var connection = mysql.createConnection({
@@ -30,7 +32,7 @@ connection.connect(function(err){
 // function start(){
 //     inquirer.prompt([{
 //         type: "list",
-//         message: "What is the [ID] of the product you'd like to buy?",
+//         message: "Enter the [ID] of the product you'd like to buy",
 //     }])
    
    
