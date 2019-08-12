@@ -21,3 +21,12 @@ If the store has enough of the product it will fulfill the customer's order. Whi
 * Inquirer 
 * CLI Table2 (updated version) for rendering tables on the command line from node.js scripts.
 
+# Screenshots
+Here is the table made from mysql and ran with node and mysql npm package on the command line:
+![](screenshots/1.png)
+
+Here is the table of items in my store. It's a small store, please don't judge. 
+![](screenshots/2.png)
+
+I'm prompting the user with a question:
+![](screenshots/3.png)

@@ -12,22 +12,10 @@ var connection = mysql.createConnection({
     database: "bamazon"
 });
 
-// //connects to database
-// connection.connect(function(err){
-//     if (err) throw err;
-//     // console.log("connected as id " + connection.threadId);
-//     // start();
-    
-//     //list the items to user
-//     // connection.query('SELECT * FROM products', function(err, res){
-//     // //error check
-//     // if (err) throw err;
-//     // console.log(res);
-//     // });
-// });
-
+//calling connection
 connection.connect();
 
+//function variable to manage connection query to mysql for the CLI table to display items nicely 
 // connecting to database through a query to display items in table
 var showItems = function(){
     connection.query("SELECT * FROM bamazon.products", function(err,res){
@@ -49,10 +37,12 @@ var showItems = function(){
             table.push([res[i].item_id, res[i].product_name, res[i].price]);
         }
         //console log table to see it
-            console.log(table.toString());
+            console.log(table.toString());   
             shop();
     });
 };
+//call it
+showItems();
 
 //using inquirer to prompt the user with questions
 var shop = function(){
@@ -67,16 +57,16 @@ var shop = function(){
         if (err) throw err;
         //if user enters an id that does not exist
         if(res.length === 0){
-            console.log("That product is not in inventory. Please enter a product Id from the list above.");
-        //call it
-        shop();
+        console.log("That product is not in inventory. Please enter a product Id from the list above.");
+        //call it and it's in line 53 so it appears with table
+        // shop();
         } else {
-        console.log('It works');
+        console.log('Entry Success');
         }
     });
     });
 };
-showItems();
+
 
 
 
@@ -85,10 +75,6 @@ showItems();
 //         type: "list",
 //         message: "Enter the [ID] of the product you'd like to buy",
 //     }])
-   
 
-
-
-   
 
 
