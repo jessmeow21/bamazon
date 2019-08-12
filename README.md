@@ -28,5 +28,5 @@ Here is the table made from mysql and ran with node and mysql npm package on the
 Here is the table of items in my store. It's a small store, please don't judge. 
 ![](screenshots/2.png)
 
-I'm prompting the user with a question:
+I'm prompting the user with two questions:
 ![](screenshots/4.png)
