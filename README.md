@@ -29,5 +29,4 @@ Here is the table of items in my store. It's a small store, please don't judge.
 ![](screenshots/2.png)
 
 I'm prompting the user with a question:
-![](screenshots/3.png)
 ![](screenshots/4.png)
