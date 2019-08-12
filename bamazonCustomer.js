@@ -24,7 +24,7 @@ var showItems = function(){
         console.log("-----------------------------");
         console.log("      Welcome To Bamazon    ");
         console.log("-----------------------------");
-        console.log("See below for inventory");
+        console.log("See below for our inventory");
         console.log("");
          //table from npm cli-table2
         var table = new Table({
@@ -47,7 +47,7 @@ var shop = function(){
     inquirer.prompt({
         name: "productToBuy",
         type: "input",
-        message: "Enter the ID of the product you'd like to buy."
+        message: "Enter the ID of the product you'd like to buy: "
     })
     .then(function(answer1){
     var selection = answer1.productToBuy;
@@ -76,7 +76,7 @@ var shop = function(){
         }else {
             console.log("");
             console.log(res[0].product_name + " purchased");
-            console.log(quantity + " qty @ $" + res[0].price);
+            console.log(quantity + res[0].price);
                //this variable will updated the stock quantity in the database
             var newQuantity = res[0].stock_quantity - quantity;
             connection.query(
