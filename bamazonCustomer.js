@@ -39,42 +39,64 @@ var showItems = function(){
         //console log table to see it
             console.log(table.toString());   
             shop();
-    });
+    }); //end connection to products
 };
-//call it
-showItems();
 
 //using inquirer to prompt the user with questions
 var shop = function(){
     inquirer.prompt({
         name: "productToBuy",
         type: "input",
-        message: "Enter the ID of the product you'd like to buy: "
+        message: "Enter the ID of the product you'd like to buy."
     })
     .then(function(answer1){
     var selection = answer1.productToBuy;
-    connection.query("SELECT * FROM products WHERE item_id", function(err, res){
+    //use connection.query to connect query to database
+    connection.query("SELECT * FROM products WHERE item_id", selection, function(err, res){
         if (err) throw err;
         //if user enters an id that does not exist
         if(res.length === 0){
         console.log("That product is not in inventory. Please enter a product Id from the list above.");
         //call it and it's in line 53 so it appears with table
         // shop();
+        shop();
         } else {
-        console.log('Entry Success');
+        // console.log('Entry Success');
+        //use inquirer to build quantity input
+        inquirer.prompt({
+            name: "quantity",
+            type: "input",
+            message: "How many items would you like to purchase?"
+        })
+        .then(function(answer2){
+        var quantity = answer2.quantity;
+        if (quantity > res[0].stock_quantity){
+        console.log("Sorry, I only have " + res[0].stock_quantity + "  items of the product selected");
+        shop();
+        }else {
+            console.log("");
+            console.log(res[0].product_name + " purchased");
+            console.log(quantity + " qty @ $" + res[0].price);
+               //this variable will updated the stock quantity in the database
+            var newQuantity = res[0].stock_quantity - quantity;
+            connection.query(
+                "UPDATE product SET stock_quantity = " + 
+                newQuantity + " WHERE id = " +
+                res[0].id, 
+                function (err, resUpdate){
+                    if (err) throw err;
+                    console.log("");
+                    console.log("Your Order has been processed");
+                    console.log("Thank you for shopping with Bamazon!");
+                    console.log("");
+                    connection.end();
+                }
+            );
         }
+        });
+    };
     });
     });
 };
-
-
-
-
-// function start(){
-//     inquirer.prompt([{
-//         type: "list",
-//         message: "Enter the [ID] of the product you'd like to buy",
-//     }])
-
-
-
+//call it
+showItems();
